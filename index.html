@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PC Build Tracker — Jett's Coding Rig</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+</head>
+<body>
+  <!-- ══════════ HEADER ══════════ -->
+  <header class="top-bar">
+    <div class="top-bar__inner">
+      <div class="logo">
+        <span class="logo__icon">⬡</span>
+        <span class="logo__text">PC&nbsp;STOCKS</span>
+      </div>
+      <nav class="nav">
+        <button class="nav__btn active" data-view="dashboard">Dashboard</button>
+        <button class="nav__btn" data-view="parts">Parts</button>
+        <button class="nav__btn" data-view="alerts">Alerts</button>
+      </nav>
+      <div class="top-bar__right">
+        <span class="badge" id="alertBadge" title="Active alerts">0</span>
+        <button class="theme-toggle" id="themeToggle" title="Toggle theme">◐</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ══════════ MAIN ══════════ -->
+  <main class="container">
+    <!-- ── DASHBOARD VIEW ── -->
+    <section class="view view--dashboard" id="viewDashboard">
+      <!-- Controls row -->
+      <div class="controls-row">
+        <div>
+          <span class="controls-label" id="lastScrapeInfo">Waiting for data...</span>
+        </div>
+        <button class="btn btn--primary" id="scrapeBtn">Refresh Prices</button>
+      </div>
+
+      <!-- Summary row -->
+      <div class="summary-row">
+        <div class="summary-card">
+          <p class="summary-card__label">Total Build Cost</p>
+          <p class="summary-card__value" id="totalCost">$0</p>
+        </div>
+        <div class="summary-card">
+          <p class="summary-card__label">vs. Last Week</p>
+          <p class="summary-card__value" id="weekDelta">—</p>
+        </div>
+        <div class="summary-card">
+          <p class="summary-card__label">Best Price Seen</p>
+          <p class="summary-card__value" id="bestTotal">—</p>
+        </div>
+        <div class="summary-card">
+          <p class="summary-card__label">Active Alerts</p>
+          <p class="summary-card__value" id="activeAlerts">0</p>
+        </div>
+      </div>
+
+      <!-- Build overview chart -->
+      <div class="chart-section">
+        <h2 class="section-title">Build Cost Over Time</h2>
+        <div class="chart-wrap">
+          <canvas id="totalChart"></canvas>
+        </div>
+      </div>
+
+      <!-- Parts grid -->
+      <h2 class="section-title">Component Breakdown</h2>
+      <div class="parts-grid" id="partsGrid"></div>
+    </section>
+
+    <!-- ── PARTS VIEW ── -->
+    <section class="view view--parts hidden" id="viewParts">
+      <h2 class="section-title">All Components</h2>
+      <div class="parts-list" id="partsList"></div>
+    </section>
+
+    <!-- ── ALERTS VIEW ── -->
+    <section class="view view--alerts hidden" id="viewAlerts">
+      <h2 class="section-title">Price Alerts</h2>
+      <p class="subtitle">Set target prices — you'll be notified when a part drops below your target or spikes above a threshold.</p>
+      <div class="alerts-list" id="alertsList"></div>
+    </section>
+  </main>
+
+  <!-- ══════════ TOAST ══════════ -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- ══════════ MODAL ══════════ -->
+  <div class="modal-overlay hidden" id="modalOverlay">
+    <div class="modal" id="modalContent"></div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

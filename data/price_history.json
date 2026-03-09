@@ -1,0 +1,154 @@
+{
+  "parts": {
+    "cpu": {
+      "id": "cpu",
+      "type": "CPU",
+      "name": "AMD Ryzen 9 9950X",
+      "spec": "16-Core / 32-Thread \u2014 4.3 GHz base, 5.7 GHz boost",
+      "currentPrice": 895.0,
+      "retailer": "CCPU Computers",
+      "source": "staticice",
+      "in_stock": true,
+      "history": [
+        {
+          "date": "2026-03-09",
+          "price": 895.0
+        }
+      ],
+      "alertTarget": 759
+    },
+    "cooler": {
+      "id": "cooler",
+      "type": "CPU Cooler",
+      "name": "ARCTIC Liquid Freezer III Pro 360",
+      "spec": "360mm AIO \u2014 77 CFM",
+      "currentPrice": 169.0,
+      "retailer": "Scorptec",
+      "source": "staticice",
+      "in_stock": true,
+      "history": [
+        {
+          "date": "2026-03-09",
+          "price": 169.0
+        }
+      ],
+      "alertTarget": 155
+    },
+    "mobo": {
+      "id": "mobo",
+      "type": "Motherboard",
+      "name": "MSI MAG X870 Tomahawk WiFi",
+      "spec": "ATX AM5 \u2014 Wi-Fi 7, PCIe 5.0, 4x M.2",
+      "currentPrice": 499.0,
+      "retailer": "Mwave Australia",
+      "source": "staticice",
+      "in_stock": true,
+      "history": [
+        {
+          "date": "2026-03-09",
+          "price": 499.0
+        }
+      ],
+      "alertTarget": 430
+    },
+    "ram": {
+      "id": "ram",
+      "type": "Memory",
+      "name": "Corsair Vengeance 96 GB DDR5-6000 CL36",
+      "spec": "2 x 48 GB \u2014 DDR5-6000 CL36",
+      "currentPrice": 999.0,
+      "retailer": "Computer & Parts Land",
+      "source": "staticice",
+      "in_stock": true,
+      "history": [
+        {
+          "date": "2026-03-09",
+          "price": 999.0
+        }
+      ],
+      "alertTarget": 828
+    },
+    "ssd1": {
+      "id": "ssd1",
+      "type": "Storage (OS)",
+      "name": "Samsung 990 Pro 2 TB NVMe",
+      "spec": "M.2-2280 PCIe 4.0 \u2014 7,450 MB/s read",
+      "currentPrice": 329.0,
+      "retailer": "Austin Computers",
+      "source": "staticice",
+      "in_stock": true,
+      "history": [
+        {
+          "date": "2026-03-09",
+          "price": 329.0
+        }
+      ],
+      "alertTarget": 258
+    },
+    "gpu": {
+      "id": "gpu",
+      "type": "GPU",
+      "name": "ASUS ProArt RTX 4060 OC 8 GB",
+      "spec": "GeForce RTX 4060 \u2014 workstation-quiet design",
+      "currentPrice": 499.0,
+      "retailer": "UMart",
+      "source": "staticice",
+      "in_stock": true,
+      "history": [
+        {
+          "date": "2026-03-09",
+          "price": 499.0
+        }
+      ],
+      "alertTarget": 459
+    },
+    "case": {
+      "id": "case",
+      "type": "Case",
+      "name": "Lian Li DAN A3 Wood mATX",
+      "spec": "Micro-ATX \u2014 wood front panel, 360mm rad support",
+      "currentPrice": 129.0,
+      "retailer": "MSY",
+      "source": "staticice",
+      "in_stock": true,
+      "history": [
+        {
+          "date": "2026-03-09",
+          "price": 129.0
+        }
+      ],
+      "alertTarget": 133
+    },
+    "psu": {
+      "id": "psu",
+      "type": "Power Supply",
+      "name": "MSI MAG A850GL PCIE5 850W",
+      "spec": "80+ Gold \u2014 Fully Modular, ATX 3.0",
+      "currentPrice": 139.0,
+      "retailer": "Computer & Parts Land",
+      "source": "staticice",
+      "in_stock": true,
+      "history": [
+        {
+          "date": "2026-03-09",
+          "price": 139.0
+        }
+      ],
+      "alertTarget": 128
+    }
+  },
+  "scrapes": [
+    {
+      "timestamp": "2026-03-09T10:08:06.884766+00:00",
+      "status": "ok",
+      "updated": 8,
+      "total": 8
+    },
+    {
+      "timestamp": "2026-03-09T10:21:23.845351+00:00",
+      "status": "ok",
+      "updated": 8,
+      "total": 8
+    }
+  ]
+}
