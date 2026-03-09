@@ -613,6 +613,8 @@ body {
 /* ═══════════════════════════════════════════
    RESPONSIVE
    ═══════════════════════════════════════════ */
+
+/* ── Tablet ── */
 @media (max-width: 900px) {
   .part-row {
     grid-template-columns: 1fr 1fr;
@@ -622,14 +624,190 @@ body {
   .part-row__delta { display: none; }
 }
 
+/* ── Mobile (iPhone) ── */
 @media (max-width: 640px) {
-  .top-bar__inner { padding: 0 16px; }
-  .container { padding: 20px 16px 60px; }
-  .nav__btn { padding: 6px 12px; font-size: .75rem; }
-  .summary-row { grid-template-columns: 1fr 1fr; }
-  .chart-wrap { height: 240px; padding: 16px; }
-  .parts-grid { grid-template-columns: 1fr; }
-  .part-row { grid-template-columns: 1fr; }
-  .part-row__price { text-align: left; }
-  .alert-card { flex-direction: column; align-items: flex-start; }
+  /* Safe area for notch / home indicator */
+  body {
+    padding-top: env(safe-area-inset-top);
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  /* Compact header */
+  .top-bar__inner {
+    padding: 0 12px;
+    height: 56px;
+  }
+  .logo__text { font-size: 1rem; }
+  .logo__icon { font-size: 1.3rem; }
+
+  /* Bottom tab bar navigation */
+  .nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 110;
+    background: var(--bg);
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-around;
+    padding: 6px 0 calc(6px + env(safe-area-inset-bottom));
+    gap: 0;
+  }
+  .nav__btn {
+    flex: 1;
+    padding: 10px 6px;
+    font-size: .7rem;
+    border-radius: 0;
+    text-align: center;
+    -webkit-tap-highlight-color: transparent;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .nav__btn.active {
+    background: transparent;
+    color: var(--accent);
+    border-bottom: 2px solid var(--accent);
+  }
+
+  /* Container adjustments */
+  .container {
+    padding: 16px 12px calc(80px + env(safe-area-inset-bottom));
+  }
+
+  /* Controls row */
+  .controls-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+  .controls-row .btn {
+    width: 100%;
+    min-height: 44px;
+    font-size: .9rem;
+  }
+
+  /* Summary cards — 2x2 compact grid */
+  .summary-row {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .summary-card {
+    padding: 14px 12px;
+  }
+  .summary-card__label {
+    font-size: .65rem;
+  }
+  .summary-card__value {
+    font-size: 1.25rem;
+  }
+
+  /* Chart */
+  .chart-section { margin-bottom: 24px; }
+  .chart-wrap {
+    height: 200px;
+    padding: 12px;
+    border-radius: var(--radius-sm);
+  }
+  .section-title {
+    font-size: 1.1rem;
+    margin-bottom: 12px;
+  }
+
+  /* Parts grid — single column, compact cards */
+  .parts-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .part-card {
+    padding: 16px;
+    gap: 6px;
+    border-radius: var(--radius-sm);
+  }
+  .part-card__name { font-size: .9rem; }
+  .part-card__price { font-size: 1.2rem; }
+  .part-card__spark { height: 36px; }
+  .part-card__retailer { font-size: .72rem; }
+
+  /* Parts list — stack vertically */
+  .part-row {
+    grid-template-columns: 1fr;
+    padding: 14px 12px;
+    gap: 4px;
+    border-radius: var(--radius-sm);
+  }
+  .part-row__type { font-size: .65rem; }
+  .part-row__name {
+    font-size: .85rem;
+  }
+  .part-row__price {
+    text-align: left;
+    font-size: 1.1rem;
+  }
+
+  /* Alerts — stackable */
+  .alert-card {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 16px 14px;
+    gap: 12px;
+    border-radius: var(--radius-sm);
+  }
+  .alert-card__status {
+    align-self: flex-start;
+  }
+  .alert-card__target {
+    text-align: left;
+  }
+  .alert-card__actions {
+    justify-content: flex-end;
+  }
+  .alert-card__btn {
+    min-height: 44px;
+    padding: 10px 18px;
+  }
+
+  /* Toast — bottom-centered above tab bar */
+  .toast-container {
+    bottom: calc(70px + env(safe-area-inset-bottom));
+    right: 12px;
+    left: 12px;
+  }
+  .toast {
+    min-width: auto;
+    max-width: none;
+  }
+
+  /* Modal — fullscreen-ish on mobile */
+  .modal {
+    width: 95%;
+    max-height: 85vh;
+    padding: 24px 18px;
+    border-radius: var(--radius-sm);
+  }
+  .modal__input {
+    font-size: 1rem;
+    padding: 12px 14px;
+    min-height: 44px;
+  }
+  .modal__actions {
+    flex-direction: column;
+    gap: 8px;
+  }
+  .modal__actions .btn {
+    width: 100%;
+    min-height: 44px;
+    font-size: .95rem;
+  }
+}
+
+/* ── Small phones (iPhone SE, etc.) ── */
+@media (max-width: 375px) {
+  .summary-card__value { font-size: 1.1rem; }
+  .part-card__price { font-size: 1.05rem; }
+  .logo__text { font-size: .9rem; }
 }

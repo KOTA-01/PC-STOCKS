@@ -1,36 +1,98 @@
-# PC STOCKS — Jett's Coding Rig Price Tracker
+# PC STOCKS — Coding Rig Price Tracker
 
-A clean, modern price-tracking dashboard for a custom developer workstation build.
+Live Australian price tracker for a custom developer workstation build.  
+Scrapes real prices from **PCPartPicker AU** and **StaticICE** every 6 hours and logs history over time.
 
 ## The Build (Lian Li A3 Wood Edition)
 
-| Component | Part | Est. Price (AUD) |
+| Component | Part | Live Price (AUD) |
 |-----------|------|----------------:|
-| CPU | AMD Ryzen 9 9950X (16c/32t) | $825 |
-| Cooler | ARCTIC Liquid Freezer III Pro 360 | $169 |
-| Motherboard | MSI MAG X870 Tomahawk WiFi | $467 |
-| Memory | Corsair Vengeance 96 GB DDR5-6000 CL36 (2×48) | $900 |
-| Storage (OS) | Samsung 990 Pro 2 TB NVMe | $280 |
-| Storage (Dev) | WD Black SN850X 2 TB NVMe | $260 |
-| GPU | ASUS ProArt RTX 4060 OC 8 GB | $499 |
-| Case | Lian Li DAN A3 Wood mATX | $145 |
-| PSU | MSI MAG A850GL PCIE5 850W Gold | $139 |
-| **Total** | | **~$3,684 AUD** |
+| CPU | AMD Ryzen 9 9950X (16c/32t) | ~$895 |
+| Cooler | ARCTIC Liquid Freezer III Pro 360 | ~$169 |
+| Motherboard | MSI MAG X870 Tomahawk WiFi | ~$499 |
+| Memory | Corsair Vengeance 96 GB DDR5-6000 CL36 (2×48) | ~$999 |
+| Storage | Samsung 990 Pro 2 TB NVMe | ~$329 |
+| GPU | ASUS ProArt RTX 4060 OC 8 GB | ~$499 |
+| Case | Lian Li DAN A3 Wood mATX | ~$129 |
+| PSU | MSI MAG A850GL PCIE5 850W Gold | ~$139 |
+| **Total** | | **~$3,658 AUD** |
+
+*Prices update automatically — values above are approximate.*
 
 ## Features
 
-- **Dashboard** — total build cost, weekly delta, best-price tracker, component breakdown with sparklines
-- **Parts View** — detailed table with current / best / 7-day change for every component
-- **Alerts** — set target prices per part; get toast notifications when prices drop below target or spike
-- **Simulated live prices** — prices fluctuate every 15 seconds to demo the tracking
-- **Light / Dark mode** — warm wood-accent colour scheme in both themes
-- **Responsive** — works on desktop, tablet, and mobile
+- **Live price scraping** — pulls real AUD prices from PCPartPicker AU & StaticICE
+- **Dashboard** — total build cost, weekly delta, best-price tracker, sparkline charts per part
+- **Parts View** — detailed table with current price, source retailer, and 7-day change
+- **Alerts** — set target prices per part; get toast notifications when prices drop or spike
+- **Price history** — logs daily prices for up to 365 days, viewable as charts
+- **Auto-scraping** — background job runs every 6 hours via APScheduler
+- **Light / Dark mode** — warm wood-accent colour scheme
+- **iPhone optimised** — bottom tab bar, safe areas, 44px touch targets, responsive layout
+- **systemd service** — auto-starts on boot, restarts on crash
 
-## Run Locally
+## Tech Stack
+
+- **Frontend:** HTML / CSS / JS + Chart.js (CDN)
+- **Backend:** Python 3, Flask, Flask-CORS
+- **Scraping:** requests + BeautifulSoup4 (PCPartPicker AU, StaticICE AU)
+- **Scheduling:** APScheduler (background, every 6 hours)
+- **Storage:** JSON file (`data/price_history.json`)
+
+## Setup
 
 ```bash
-python3 -m http.server 8765
-# open http://localhost:8765
+# Install dependencies
+pip install -r requirements.txt
+
+# Run the server (serves frontend + API on port 5000)
+python3 server.py
+
+# Open in browser
+open http://localhost:5000
 ```
 
-No build tools needed — pure HTML/CSS/JS with Chart.js via CDN.
+### Run as a systemd user service
+
+```bash
+# Copy the service file
+cp pc-stocks.service ~/.config/systemd/user/
+
+# Enable and start
+systemctl --user daemon-reload
+systemctl --user enable --now pc-stocks
+
+# Enable linger so it runs when logged out
+loginctl enable-linger $USER
+```
+
+### Useful commands
+
+```bash
+systemctl --user status pc-stocks     # check status
+systemctl --user restart pc-stocks    # restart after code changes
+journalctl --user -u pc-stocks -f     # tail live logs
+```
+
+## API
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/prices` | Current prices + history for all parts |
+| POST | `/api/scrape` | Trigger an immediate price scrape |
+| GET | `/api/status` | Server status + last scrape info |
+| GET/POST | `/api/alerts` | Get or set alert targets |
+
+## Project Structure
+
+```
+PC-STOCKS/
+├── index.html          # Main page
+├── styles.css          # Design system (dark/light, responsive)
+├── app.js              # Frontend logic, charts, alerts
+├── server.py           # Flask API + background scheduler
+├── scraper.py          # Price scraping (PCPartPicker + StaticICE)
+├── requirements.txt    # Python dependencies
+└── data/
+    └── price_history.json  # Persistent price data
+```
