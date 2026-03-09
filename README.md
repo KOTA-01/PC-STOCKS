@@ -52,10 +52,30 @@ python3 server.py
 open http://localhost:5000
 ```
 
+### Access from other devices (phone, tablet, etc.)
+
+The server binds to `0.0.0.0`, so any device on the same network can access it.  
+Find your local IP and open it in a browser:
+
+```bash
+# Find your IP
+hostname -I | awk '{print $1}'
+
+# Then open on your phone:
+# http://<YOUR_IP>:5000
+```
+
+If it doesn't connect, allow port 5000 through the firewall:
+
+```bash
+sudo ufw allow 5000/tcp
+```
+
 ### Run as a systemd user service
 
 ```bash
 # Copy the service file
+mkdir -p ~/.config/systemd/user
 cp pc-stocks.service ~/.config/systemd/user/
 
 # Enable and start
