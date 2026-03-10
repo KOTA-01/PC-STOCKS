@@ -13,6 +13,10 @@
         {
           "date": "2026-03-09",
           "price": 895.0
+        },
+        {
+          "date": "2026-03-10",
+          "price": 895.0
         }
       ],
       "alertTarget": 759
@@ -29,6 +33,10 @@
       "history": [
         {
           "date": "2026-03-09",
+          "price": 169.0
+        },
+        {
+          "date": "2026-03-10",
           "price": 169.0
         }
       ],
@@ -47,6 +55,10 @@
         {
           "date": "2026-03-09",
           "price": 499.0
+        },
+        {
+          "date": "2026-03-10",
+          "price": 499.0
         }
       ],
       "alertTarget": 430
@@ -63,6 +75,10 @@
       "history": [
         {
           "date": "2026-03-09",
+          "price": 999.0
+        },
+        {
+          "date": "2026-03-10",
           "price": 999.0
         }
       ],
@@ -81,6 +97,10 @@
         {
           "date": "2026-03-09",
           "price": 329.0
+        },
+        {
+          "date": "2026-03-10",
+          "price": 329.0
         }
       ],
       "alertTarget": 258
@@ -91,12 +111,16 @@
       "name": "ASUS ProArt RTX 4060 OC 8 GB",
       "spec": "GeForce RTX 4060 \u2014 workstation-quiet design",
       "currentPrice": 499.0,
-      "retailer": "UMart",
+      "retailer": "MSY",
       "source": "staticice",
       "in_stock": true,
       "history": [
         {
           "date": "2026-03-09",
+          "price": 499.0
+        },
+        {
+          "date": "2026-03-10",
           "price": 499.0
         }
       ],
@@ -115,6 +139,10 @@
         {
           "date": "2026-03-09",
           "price": 129.0
+        },
+        {
+          "date": "2026-03-10",
+          "price": 129.0
         }
       ],
       "alertTarget": 133
@@ -131,6 +159,10 @@
       "history": [
         {
           "date": "2026-03-09",
+          "price": 139.0
+        },
+        {
+          "date": "2026-03-10",
           "price": 139.0
         }
       ],
@@ -152,6 +184,96 @@
     },
     {
       "timestamp": "2026-03-09T10:37:50.506716+00:00",
+      "status": "ok",
+      "updated": 8,
+      "total": 8
+    },
+    {
+      "timestamp": "2026-03-09T11:14:30.549837+00:00",
+      "status": "ok",
+      "updated": 8,
+      "total": 8
+    },
+    {
+      "timestamp": "2026-03-09T11:15:03.356610+00:00",
+      "status": "ok",
+      "updated": 8,
+      "total": 8
+    },
+    {
+      "timestamp": "2026-03-09T11:15:36.877828+00:00",
+      "status": "ok",
+      "updated": 8,
+      "total": 8
+    },
+    {
+      "timestamp": "2026-03-09T11:16:09.297106+00:00",
+      "status": "ok",
+      "updated": 8,
+      "total": 8
+    },
+    {
+      "timestamp": "2026-03-09T11:16:42.666134+00:00",
+      "status": "ok",
+      "updated": 8,
+      "total": 8
+    },
+    {
+      "timestamp": "2026-03-09T11:17:14.944276+00:00",
+      "status": "ok",
+      "updated": 8,
+      "total": 8
+    },
+    {
+      "timestamp": "2026-03-09T11:17:51.540009+00:00",
+      "status": "ok",
+      "updated": 8,
+      "total": 8
+    },
+    {
+      "timestamp": "2026-03-09T11:18:24.109500+00:00",
+      "status": "ok",
+      "updated": 8,
+      "total": 8
+    },
+    {
+      "timestamp": "2026-03-09T11:18:56.473937+00:00",
+      "status": "ok",
+      "updated": 8,
+      "total": 8
+    },
+    {
+      "timestamp": "2026-03-09T11:19:29.168617+00:00",
+      "status": "ok",
+      "updated": 8,
+      "total": 8
+    },
+    {
+      "timestamp": "2026-03-09T11:20:01.511263+00:00",
+      "status": "ok",
+      "updated": 8,
+      "total": 8
+    },
+    {
+      "timestamp": "2026-03-09T11:20:34.136391+00:00",
+      "status": "ok",
+      "updated": 8,
+      "total": 8
+    },
+    {
+      "timestamp": "2026-03-09T11:21:08.678487+00:00",
+      "status": "ok",
+      "updated": 8,
+      "total": 8
+    },
+    {
+      "timestamp": "2026-03-09T11:21:43.497381+00:00",
+      "status": "ok",
+      "updated": 8,
+      "total": 8
+    },
+    {
+      "timestamp": "2026-03-10T05:22:05.657466+00:00",
       "status": "ok",
       "updated": 8,
       "total": 8
