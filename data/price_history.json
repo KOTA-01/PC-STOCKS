@@ -17,6 +17,10 @@
         {
           "date": "2026-03-10",
           "price": 895.0
+        },
+        {
+          "date": "2026-03-11",
+          "price": 895.0
         }
       ],
       "alertTarget": 759
@@ -37,6 +41,10 @@
         },
         {
           "date": "2026-03-10",
+          "price": 169.0
+        },
+        {
+          "date": "2026-03-11",
           "price": 169.0
         }
       ],
@@ -59,6 +67,10 @@
         {
           "date": "2026-03-10",
           "price": 499.0
+        },
+        {
+          "date": "2026-03-11",
+          "price": 499.0
         }
       ],
       "alertTarget": 430
@@ -79,6 +91,10 @@
         },
         {
           "date": "2026-03-10",
+          "price": 999.0
+        },
+        {
+          "date": "2026-03-11",
           "price": 999.0
         }
       ],
@@ -101,6 +117,10 @@
         {
           "date": "2026-03-10",
           "price": 329.0
+        },
+        {
+          "date": "2026-03-11",
+          "price": 329.0
         }
       ],
       "alertTarget": 258
@@ -122,6 +142,10 @@
         {
           "date": "2026-03-10",
           "price": 499.0
+        },
+        {
+          "date": "2026-03-11",
+          "price": 499.0
         }
       ],
       "alertTarget": 459
@@ -132,7 +156,7 @@
       "name": "Lian Li DAN A3 Wood mATX",
       "spec": "Micro-ATX \u2014 wood front panel, 360mm rad support",
       "currentPrice": 129.0,
-      "retailer": "MSY",
+      "retailer": "Scorptec",
       "source": "staticice",
       "in_stock": true,
       "history": [
@@ -142,6 +166,10 @@
         },
         {
           "date": "2026-03-10",
+          "price": 129.0
+        },
+        {
+          "date": "2026-03-11",
           "price": 129.0
         }
       ],
@@ -153,7 +181,7 @@
       "name": "MSI MAG A850GL PCIE5 850W",
       "spec": "80+ Gold \u2014 Fully Modular, ATX 3.0",
       "currentPrice": 139.0,
-      "retailer": "Computer & Parts Land",
+      "retailer": "MSY",
       "source": "staticice",
       "in_stock": true,
       "history": [
@@ -163,6 +191,10 @@
         },
         {
           "date": "2026-03-10",
+          "price": 139.0
+        },
+        {
+          "date": "2026-03-11",
           "price": 139.0
         }
       ],
@@ -274,6 +306,12 @@
     },
     {
       "timestamp": "2026-03-10T05:22:05.657466+00:00",
+      "status": "ok",
+      "updated": 8,
+      "total": 8
+    },
+    {
+      "timestamp": "2026-03-11T05:22:08.161014+00:00",
       "status": "ok",
       "updated": 8,
       "total": 8
