@@ -194,9 +194,8 @@ function renderDashboard() {
 
   // Parts grid
   const grid = document.getElementById("partsGrid");
-  grid.innerHTML = "";
-
-  PARTS.forEach((part) => {
+  
+  const gridHTML = PARTS.map((part) => {
     const delta = getDelta(part);
     const status = getAlertStatus(part);
     const bestP = getBestPrice(part);
@@ -221,7 +220,7 @@ function renderDashboard() {
       tags +=
         '<span class="tag" style="background:var(--yellow-bg);color:var(--yellow)">ESTIMATED</span>';
 
-    grid.innerHTML += `
+    return `
       <div class="${cardClass}" data-part="${part.id}">
         <span class="part-card__type">${part.type}</span>
         <span class="part-card__name">${part.name}</span>
@@ -234,7 +233,9 @@ function renderDashboard() {
         <canvas class="part-card__spark" id="spark-${part.id}"></canvas>
       </div>
     `;
-  });
+  }).join('');
+  
+  grid.innerHTML = gridHTML;
 
   // Sparklines
   PARTS.forEach((part) => renderSparkline(part));
@@ -397,10 +398,9 @@ function renderTotalChart() {
 // ────────────────────────────────────────────────────
 function renderPartsList() {
   const list = document.getElementById("partsList");
-  list.innerHTML = "";
 
   // Header
-  list.innerHTML += `
+  let listHTML = `
     <div class="part-row" style="background:transparent;border:none;box-shadow:none;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--text-muted);">
       <span>Type</span>
       <span>Component</span>
@@ -410,7 +410,7 @@ function renderPartsList() {
     </div>
   `;
 
-  PARTS.forEach((part) => {
+  listHTML += PARTS.map((part) => {
     const delta = getDelta(part);
     const bestP = getBestPrice(part);
     const deltaClass = delta < -1 ? "positive" : delta > 1 ? "negative" : "";
@@ -420,7 +420,7 @@ function renderPartsList() {
         ? ' <span style="color:var(--red)">Out of stock</span>'
         : "";
 
-    list.innerHTML += `
+    return `
       <div class="part-row" data-part="${part.id}">
         <span class="part-row__type">${part.type}</span>
         <span class="part-row__name">${part.name}<br><small style="color:var(--text-dim);font-weight:400">${part.retailer} · ${sourceLabel}${stockBadge}</small></span>
@@ -429,11 +429,11 @@ function renderPartsList() {
         <span class="part-row__delta ${deltaClass}">${fmtDelta(delta)}</span>
       </div>
     `;
-  });
+  }).join('');
 
   // Total row
   const total = totalCost();
-  list.innerHTML += `
+  listHTML += `
     <div class="part-row" style="border-color:var(--accent);margin-top:8px;">
       <span class="part-row__type" style="color:var(--accent)">TOTAL</span>
       <span class="part-row__name" style="font-weight:800">Complete Build</span>
@@ -442,6 +442,8 @@ function renderPartsList() {
       <span class="part-row__delta">${fmtDelta(totalCost() - totalWeekAgo())}</span>
     </div>
   `;
+  
+  list.innerHTML = listHTML;
 }
 
 // ────────────────────────────────────────────────────
@@ -449,9 +451,8 @@ function renderPartsList() {
 // ────────────────────────────────────────────────────
 function renderAlerts() {
   const list = document.getElementById("alertsList");
-  list.innerHTML = "";
 
-  PARTS.forEach((part) => {
+  const alertsHTML = PARTS.map((part) => {
     const target = alerts[part.id] || part.alertTarget || 0;
     const status = getAlertStatus(part);
     const statusClass =
@@ -467,7 +468,7 @@ function renderAlerts() {
         ? "Price Rising ▲"
         : "Watching";
 
-    list.innerHTML += `
+    return `
       <div class="alert-card" data-part="${part.id}">
         <div class="alert-card__info">
           <div class="alert-card__name">${part.name}</div>
@@ -483,7 +484,9 @@ function renderAlerts() {
         </div>
       </div>
     `;
-  });
+  }).join('');
+  
+  list.innerHTML = alertsHTML;
 }
 
 // ────────────────────────────────────────────────────

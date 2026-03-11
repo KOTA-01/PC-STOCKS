@@ -263,6 +263,7 @@ body {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
   gap: 16px;
+  align-items: start;
 }
 
 /* ── Part Card ── */
@@ -277,6 +278,8 @@ body {
   gap: 10px;
   transition: border-color var(--transition), transform var(--transition);
   cursor: default;
+  height: fit-content;
+  max-height: none;
 }
 .part-card:hover {
   border-color: var(--accent);
@@ -333,7 +336,9 @@ body {
 .part-card__spark {
   width: 100%;
   height: 48px;
+  max-height: 48px;
   margin-top: 6px;
+  flex-shrink: 0;
 }
 
 .part-card__tags {
