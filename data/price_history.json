@@ -7,7 +7,7 @@
       "spec": "16-Core / 32-Thread \u2014 4.3 GHz base, 5.7 GHz boost",
       "currentPrice": 895.0,
       "retailer": "CCPU Computers",
-      "source": "staticice",
+      "source": "ccpu_computers",
       "in_stock": true,
       "history": [
         {
@@ -32,7 +32,7 @@
       "spec": "360mm AIO \u2014 77 CFM",
       "currentPrice": 169.0,
       "retailer": "Scorptec",
-      "source": "staticice",
+      "source": "scorptec",
       "in_stock": true,
       "history": [
         {
@@ -55,9 +55,9 @@
       "type": "Motherboard",
       "name": "MSI MAG X870 Tomahawk WiFi",
       "spec": "ATX AM5 \u2014 Wi-Fi 7, PCIe 5.0, 4x M.2",
-      "currentPrice": 499.0,
-      "retailer": "Mwave Australia",
-      "source": "staticice",
+      "currentPrice": 369.0,
+      "retailer": "MSY",
+      "source": "msy",
       "in_stock": true,
       "history": [
         {
@@ -70,7 +70,7 @@
         },
         {
           "date": "2026-03-11",
-          "price": 499.0
+          "price": 369.0
         }
       ],
       "alertTarget": 430
@@ -107,7 +107,7 @@
       "spec": "M.2-2280 PCIe 4.0 \u2014 7,450 MB/s read",
       "currentPrice": 329.0,
       "retailer": "Austin Computers",
-      "source": "staticice",
+      "source": "austin_computers",
       "in_stock": true,
       "history": [
         {
@@ -131,8 +131,8 @@
       "name": "ASUS ProArt RTX 4060 OC 8 GB",
       "spec": "GeForce RTX 4060 \u2014 workstation-quiet design",
       "currentPrice": 499.0,
-      "retailer": "MSY",
-      "source": "staticice",
+      "retailer": "PC Case Gear",
+      "source": "pc_case_gear",
       "in_stock": true,
       "history": [
         {
@@ -181,8 +181,8 @@
       "name": "MSI MAG A850GL PCIE5 850W",
       "spec": "80+ Gold \u2014 Fully Modular, ATX 3.0",
       "currentPrice": 139.0,
-      "retailer": "MSY",
-      "source": "staticice",
+      "retailer": "Computer & Parts Land",
+      "source": "computer_&_parts_land",
       "in_stock": true,
       "history": [
         {
@@ -314,6 +314,84 @@
       "timestamp": "2026-03-11T05:22:08.161014+00:00",
       "status": "ok",
       "updated": 8,
+      "total": 8
+    },
+    {
+      "timestamp": "2026-03-11T09:44:00.591586+00:00",
+      "status": "ok",
+      "updated": 6,
+      "total": 8
+    },
+    {
+      "timestamp": "2026-03-11T09:45:10.580240+00:00",
+      "status": "ok",
+      "updated": 6,
+      "total": 8
+    },
+    {
+      "timestamp": "2026-03-11T09:45:49.609083+00:00",
+      "status": "ok",
+      "updated": 6,
+      "total": 8
+    },
+    {
+      "timestamp": "2026-03-11T09:46:23.169479+00:00",
+      "status": "ok",
+      "updated": 6,
+      "total": 8
+    },
+    {
+      "timestamp": "2026-03-11T09:46:56.844957+00:00",
+      "status": "ok",
+      "updated": 6,
+      "total": 8
+    },
+    {
+      "timestamp": "2026-03-11T09:47:30.307542+00:00",
+      "status": "ok",
+      "updated": 6,
+      "total": 8
+    },
+    {
+      "timestamp": "2026-03-11T09:48:04.509383+00:00",
+      "status": "ok",
+      "updated": 6,
+      "total": 8
+    },
+    {
+      "timestamp": "2026-03-11T09:48:38.659855+00:00",
+      "status": "ok",
+      "updated": 6,
+      "total": 8
+    },
+    {
+      "timestamp": "2026-03-11T09:49:12.876969+00:00",
+      "status": "ok",
+      "updated": 6,
+      "total": 8
+    },
+    {
+      "timestamp": "2026-03-11T09:49:46.372669+00:00",
+      "status": "ok",
+      "updated": 6,
+      "total": 8
+    },
+    {
+      "timestamp": "2026-03-11T09:50:26.771394+00:00",
+      "status": "ok",
+      "updated": 6,
+      "total": 8
+    },
+    {
+      "timestamp": "2026-03-11T09:52:16.764667+00:00",
+      "status": "ok",
+      "updated": 6,
+      "total": 8
+    },
+    {
+      "timestamp": "2026-03-11T11:49:53.522563+00:00",
+      "status": "ok",
+      "updated": 6,
       "total": 8
     }
   ]

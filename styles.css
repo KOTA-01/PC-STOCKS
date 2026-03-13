@@ -381,6 +381,10 @@ body {
   transition: border-color var(--transition);
 }
 .part-row:hover { border-color: var(--accent); }
+.part-row--sale {
+  border-color: var(--green);
+  background: linear-gradient(135deg, var(--bg-card), var(--green-bg));
+}
 
 .part-row__type {
   font-size: .72rem;

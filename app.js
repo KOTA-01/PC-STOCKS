@@ -109,6 +109,46 @@ function getBestPrice(part) {
   return Math.min(...h.map((e) => e.price));
 }
 
+/**
+ * Detect whether the current price qualifies as "on sale".
+ * True when ANY of:
+ *   1. Price dropped vs. the previous recorded price (by >$2)
+ *   2. Current price is below the historical average by >5%
+ *      (requires ≥3 history entries so we have real context)
+ *   3. A user-set price alert has been triggered
+ *   4. Current price equals all-time best AND there have been
+ *      higher prices recorded (a genuine discount, not just stable)
+ */
+function isOnSale(part) {
+  const h = part.history || [];
+  const cur = part.currentPrice;
+
+  // Alert-triggered counts as on sale
+  if (getAlertStatus(part) === "triggered") return true;
+
+  if (h.length < 2) return false;
+
+  // Price dropped compared to the previous entry
+  const prev = h[h.length - 2]?.price;
+  if (prev && cur < prev - 2) return true;
+
+  // Need ≥3 data points for average / best-ever checks
+  if (h.length >= 3) {
+    const best = getBestPrice(part);
+    const max  = Math.max(...h.map((e) => e.price));
+    const avg  = h.reduce((s, e) => s + e.price, 0) / h.length;
+
+    // Below the historical average by >5 %
+    if (cur < avg * 0.95) return true;
+
+    // At the all-time best AND the highest recorded price was >3 % higher
+    // (ensures there was a real price range, not just a flat line)
+    if (cur <= best + 3 && max > best * 1.03) return true;
+  }
+
+  return false;
+}
+
 function getAlertStatus(part) {
   const target = alerts[part.id] || part.alertTarget;
   if (!target) return null;
@@ -139,11 +179,23 @@ function activeAlertCount() {
 }
 
 function formatSource(source) {
-  if (source === "pcpartpicker") return "PCPartPicker AU";
-  if (source === "staticice") return "StaticICE";
-  if (source === "fallback") return "Estimated";
-  if (source === "seed") return "Initial estimate";
-  return source || "Unknown";
+  if (!source) return "Unknown";
+  // Known sources with custom labels
+  const labels = {
+    pcpartpicker: "PCPartPicker AU",
+    pcpartpicker_au: "PCPartPicker AU",
+    staticice: "StaticICE",
+    fallback: "Estimated",
+    seed: "Initial estimate",
+    scorptec: "Scorptec",
+    pc_case_gear: "PC Case Gear",
+    centre_com: "Centre Com",
+    umart: "Umart",
+    amazon_au: "Amazon AU",
+    computer_alliance: "Computer Alliance",
+    msy: "MSY",
+  };
+  return labels[source] || source.replace(/_/g, " ").replace(/\b\w/g, c => c.toUpperCase());
 }
 
 // ────────────────────────────────────────────────────
@@ -202,9 +254,11 @@ function renderDashboard() {
     const isAtBest = part.currentPrice <= bestP + 2;
     const sourceLabel = formatSource(part.source);
 
+    const onSale = isOnSale(part);
+
     let cardClass = "part-card";
-    if (status === "triggered") cardClass += " part-card--sale";
-    if (status === "rising") cardClass += " part-card--rising";
+    if (onSale) cardClass += " part-card--sale";
+    else if (status === "rising") cardClass += " part-card--rising";
 
     const deltaClass =
       delta < -1 ? "delta--down" : delta > 1 ? "delta--up" : "delta--flat";
@@ -212,7 +266,7 @@ function renderDashboard() {
       delta < -1 ? fmtDelta(delta) : delta > 1 ? fmtDelta(delta) : "Stable";
 
     let tags = "";
-    if (status === "triggered")
+    if (onSale)
       tags += '<span class="tag tag--sale">ON SALE</span>';
     if (delta > 5) tags += '<span class="tag tag--rising">RISING</span>';
     if (isAtBest) tags += '<span class="tag tag--best">BEST PRICE</span>';
@@ -415,15 +469,19 @@ function renderPartsList() {
     const bestP = getBestPrice(part);
     const deltaClass = delta < -1 ? "positive" : delta > 1 ? "negative" : "";
     const sourceLabel = formatSource(part.source);
+    const onSale = isOnSale(part);
     const stockBadge =
       part.in_stock === false
         ? ' <span style="color:var(--red)">Out of stock</span>'
         : "";
+    const saleBadge = onSale
+        ? ' <span class="tag tag--sale" style="font-size:.6rem;padding:1px 6px;margin-left:4px">ON SALE</span>'
+        : "";
 
     return `
-      <div class="part-row" data-part="${part.id}">
+      <div class="part-row${onSale ? ' part-row--sale' : ''}" data-part="${part.id}">
         <span class="part-row__type">${part.type}</span>
-        <span class="part-row__name">${part.name}<br><small style="color:var(--text-dim);font-weight:400">${part.retailer} · ${sourceLabel}${stockBadge}</small></span>
+        <span class="part-row__name">${part.name}<br><small style="color:var(--text-dim);font-weight:400">${part.retailer} · ${sourceLabel}${stockBadge}${saleBadge}</small></span>
         <span class="part-row__price">${fmt(part.currentPrice)}</span>
         <span class="part-row__best">${fmt(Math.round(bestP))}</span>
         <span class="part-row__delta ${deltaClass}">${fmtDelta(delta)}</span>
