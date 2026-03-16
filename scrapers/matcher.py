@@ -124,6 +124,23 @@ def _extract_capacity(text: str) -> str | None:
     return None
 
 
+def _extract_sku_tokens(text: str) -> set[str]:
+    """Extract long alphanumeric SKU-like tokens (e.g. FF3D564G6000HC38JDC01)."""
+    tokens = set()
+    for tok in re.findall(r"\b[a-z0-9-]{8,}\b", text.lower()):
+        if sum(ch.isdigit() for ch in tok) >= 3 and sum(ch.isalpha() for ch in tok) >= 2:
+            tokens.add(tok.replace("-", ""))
+    return tokens
+
+
+def _extract_gpu_family(text: str) -> str | None:
+    """Extract exact GPU family like 'rtx4060', 'rtx5060', 'rx7800xt'."""
+    m = re.search(r"\b((?:rtx|gtx|rx)\s*\d{3,4})\b", text, re.I)
+    if m:
+        return re.sub(r"\s+", "", m.group(1).lower())
+    return None
+
+
 # ─── Scoring ────────────────────────────────────────────────────────────────
 
 def score(
@@ -185,6 +202,27 @@ def score(
             total -= 0.10  # Wrong capacity is a strong mismatch
     weights_used += 0.15
 
+    # ── 3a. SKU/model-code exactness (weight 0.25) ─────────────────
+    listing_skus = _extract_sku_tokens(listing_title)
+    wanted_skus = _extract_sku_tokens(wanted_full)
+
+    if wanted_skus and listing_skus:
+        overlap = listing_skus & wanted_skus
+        if overlap:
+            total += 0.25
+        else:
+            total -= 0.15
+
+    # ── 3b. Exact GPU family match (strong penalty on mismatch) ─────
+    listing_gpu = _extract_gpu_family(listing_title)
+    wanted_gpu = _extract_gpu_family(wanted_full)
+
+    if wanted_gpu and listing_gpu:
+        if listing_gpu == wanted_gpu:
+            total += 0.20
+        else:
+            total -= 0.25
+
     # ── 4. Token overlap — Jaccard similarity (weight 0.30) ─────────
     listing_tokens = _tokenise(listing_title)
     wanted_tokens = _tokenise(wanted_full)
@@ -203,6 +241,16 @@ def score(
 
 MATCH_THRESHOLD = 0.40   # Minimum score to consider a listing relevant
 STRONG_THRESHOLD = 0.55  # Score above which we're confident it's the right product
+
+
+def _stock_rank(listing) -> int:
+    """Rank confirmed stock before unknown before out-of-stock."""
+    status = getattr(listing, "stock_status", "unknown")
+    if status == "in_stock":
+        return 0
+    if status == "unknown" and getattr(listing, "in_stock", True):
+        return 1
+    return 2
 
 
 def best_match(
@@ -246,8 +294,8 @@ def best_match(
     strong = [(l, s) for l, s in scored if s >= STRONG_THRESHOLD]
     pool = strong if strong else scored
 
-    # Sort: in-stock first → cheapest price → highest score tie-breaker
-    pool.sort(key=lambda x: (not x[0].in_stock, x[0].price, -x[1]))
+    # Sort: confirmed in-stock → unknown stock → out-of-stock → cheapest → best score
+    pool.sort(key=lambda x: (_stock_rank(x[0]), x[0].price, -x[1]))
 
     best_listing, best_score = pool[0]
     log.info(

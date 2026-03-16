@@ -52,11 +52,11 @@ PART_SCRAPE_CONFIG = [
     {
         "id": "ram",
         "type": "Memory",
-        "name": "Corsair Vengeance 96 GB DDR5-6000 CL36",
-        "spec": "2 x 48 GB — DDR5-6000 CL36",
-        "search_query": "Corsair Vengeance 96GB DDR5 6000",
+        "name": "Corsair Vengeance 96 GB DDR5-6000 CL36 (CMK96GX5M2E6000Z36)",
+        "spec": "2 x 48 GB — DDR5-6000 CL36 — CMK96GX5M2E6000Z36",
+        "search_query": "CMK96GX5M2E6000Z36",
         "pcpartpicker_url": None,
-        "fallback_price": 900,
+        "fallback_price": 1099,
     },
     {
         "id": "ssd1",
@@ -64,17 +64,17 @@ PART_SCRAPE_CONFIG = [
         "name": "Samsung 990 Pro 2 TB NVMe",
         "spec": "M.2-2280 PCIe 4.0 — 7,450 MB/s read",
         "search_query": "Samsung 990 Pro 2TB",
-        "pcpartpicker_url": "https://au.pcpartpicker.com/product/wkK322/samsung-990-pro-2-tb-m2-2280-pcie-40-x4-nvme-solid-state-drive-mz-v9p2t0bw",
-        "fallback_price": 280,
+        "pcpartpicker_url": None,
+        "fallback_price": 489,
     },
     {
         "id": "gpu",
         "type": "GPU",
-        "name": "ASUS Dual GeForce RTX 4060 Ti EVO OC 8 GB",
-        "spec": "GeForce RTX 4060 Ti — 8 GB GDDR6, OC edition",
-        "search_query": "ASUS RTX 4060 Ti Dual EVO OC 8GB",
+        "name": "PNY GeForce RTX 5060 ARGB OC Triple Fan 8 GB (VCG50608TFXXPB1-O)",
+        "spec": "GeForce RTX 5060 — 8 GB GDDR7, ARGB triple-fan OC",
+        "search_query": "VCG50608TFXXPB1-O",
         "pcpartpicker_url": None,
-        "fallback_price": 499,
+        "fallback_price": 489,
     },
     {
         "id": "case",
@@ -97,6 +97,12 @@ PART_SCRAPE_CONFIG = [
 ]
 
 
+# Temporary manual stock overrides for listings where retailer pages or
+# aggregator snippets are known to misreport availability.
+STOCK_OVERRIDES = {
+}
+
+
 # ─── Core scraping logic ────────────────────────────────────────────────────
 
 def _scrape_part(part: dict) -> dict:
@@ -117,6 +123,7 @@ def _scrape_part(part: dict) -> dict:
     query = part.get("search_query") or name
     pcpp_url = part.get("pcpartpicker_url")
     fallback = part["fallback_price"]
+    stock_override = STOCK_OVERRIDES.get(pid)
 
     all_listings: list[ProductListing] = []
 
@@ -160,10 +167,15 @@ def _scrape_part(part: dict) -> dict:
                 "retailer": listing.store,
                 "source": source_name,
                 "in_stock": listing.in_stock,
+                "stock_status": getattr(
+                    listing,
+                    "stock_status",
+                    "in_stock" if listing.in_stock else "out_of_stock",
+                ),
                 "url": listing.url,
                 "shipping": listing.shipping,
                 "match_score": round(match_score, 2),
-            }
+            } | (stock_override or {})
 
     # ── 4. Fallback ─────────────────────────────────────────────────
     log.warning("✗ %s: all sources failed — using fallback $%.2f", name, fallback)
@@ -176,10 +188,11 @@ def _scrape_part(part: dict) -> dict:
         "retailer": "Unknown",
         "source": "fallback",
         "in_stock": False,
+        "stock_status": "out_of_stock",
         "url": "",
         "shipping": None,
         "match_score": 0.0,
-    }
+    } | (stock_override or {})
 
 
 def scrape_all() -> list[dict]:

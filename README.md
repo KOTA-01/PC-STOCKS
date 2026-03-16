@@ -7,15 +7,15 @@ Scrapes real prices from **PCPartPicker AU** and **StaticICE** every 6 hours and
 
 | Component | Part | Live Price (AUD) |
 |-----------|------|----------------:|
-| CPU | AMD Ryzen 9 9950X (16c/32t) | ~$895 |
+| CPU | AMD Ryzen 9 9950X (16c/32t) | ~$897 |
 | Cooler | ARCTIC Liquid Freezer III Pro 360 | ~$169 |
-| Motherboard | MSI MAG X870 Tomahawk WiFi | ~$499 |
-| Memory | Corsair Vengeance 96 GB DDR5-6000 CL36 (2×48) | ~$999 |
-| Storage | Samsung 990 Pro 2 TB NVMe | ~$329 |
-| GPU | ASUS ProArt RTX 4060 OC 8 GB | ~$499 |
-| Case | Lian Li DAN A3 Wood mATX | ~$129 |
+| Motherboard | MSI MAG B850M Mortar WiFi (mATX) | ~$369 |
+| Memory | Corsair Vengeance 96 GB DDR5-6000 CL36 (CMK96GX5M2E6000Z36) | ~$1,099 |
+| Storage | Samsung 990 Pro 2 TB NVMe | ~$489 |
+| GPU | PNY GeForce RTX 5060 ARGB OC Triple Fan 8 GB (VCG50608TFXXPB1-O) | ~$489 |
+| Case | Lian Li DAN A3 Wood mATX | ~$145 |
 | PSU | MSI MAG A850GL PCIE5 850W Gold | ~$139 |
-| **Total** | | **~$3,658 AUD** |
+| **Total** | | **~$3,796 AUD** |
 
 *Prices update automatically — values above are approximate.*
 

@@ -5,25 +5,22 @@
       "type": "CPU",
       "name": "AMD Ryzen 9 9950X",
       "spec": "16-Core / 32-Thread \u2014 4.3 GHz base, 5.7 GHz boost",
-      "currentPrice": 895.0,
-      "retailer": "CCPU Computers",
-      "source": "ccpu_computers",
+      "currentPrice": 897.0,
+      "retailer": "MSY",
+      "source": "msy",
       "in_stock": true,
+      "stock_status": "in_stock",
       "history": [
         {
-          "date": "2026-03-09",
-          "price": 895.0
+          "date": "2026-03-13",
+          "price": 897.0
         },
         {
-          "date": "2026-03-10",
-          "price": 895.0
-        },
-        {
-          "date": "2026-03-11",
-          "price": 895.0
+          "date": "2026-03-14",
+          "price": 897.0
         }
       ],
-      "alertTarget": 759
+      "alertTarget": 823
     },
     "cooler": {
       "id": "cooler",
@@ -31,20 +28,17 @@
       "name": "ARCTIC Liquid Freezer III Pro 360",
       "spec": "360mm AIO \u2014 77 CFM",
       "currentPrice": 169.0,
-      "retailer": "Scorptec",
-      "source": "scorptec",
+      "retailer": "PLE Computers",
+      "source": "ple_computers",
       "in_stock": true,
+      "stock_status": "unknown",
       "history": [
         {
-          "date": "2026-03-09",
+          "date": "2026-03-13",
           "price": 169.0
         },
         {
-          "date": "2026-03-10",
-          "price": 169.0
-        },
-        {
-          "date": "2026-03-11",
+          "date": "2026-03-14",
           "price": 169.0
         }
       ],
@@ -53,124 +47,109 @@
     "mobo": {
       "id": "mobo",
       "type": "Motherboard",
-      "name": "MSI MAG X870 Tomahawk WiFi",
-      "spec": "ATX AM5 \u2014 Wi-Fi 7, PCIe 5.0, 4x M.2",
+      "name": "MSI MAG B850M Mortar WiFi",
+      "spec": "Micro-ATX AM5 \u2014 Wi-Fi 6E, PCIe 5.0 M.2, strong VRM",
       "currentPrice": 369.0,
       "retailer": "MSY",
       "source": "msy",
       "in_stock": true,
+      "stock_status": "in_stock",
       "history": [
         {
-          "date": "2026-03-09",
-          "price": 499.0
+          "date": "2026-03-13",
+          "price": 369.0
         },
         {
-          "date": "2026-03-10",
-          "price": 499.0
-        },
-        {
-          "date": "2026-03-11",
+          "date": "2026-03-14",
           "price": 369.0
         }
       ],
-      "alertTarget": 430
+      "alertTarget": 339
     },
     "ram": {
       "id": "ram",
       "type": "Memory",
-      "name": "Corsair Vengeance 96 GB DDR5-6000 CL36",
-      "spec": "2 x 48 GB \u2014 DDR5-6000 CL36",
-      "currentPrice": 999.0,
-      "retailer": "Computer & Parts Land",
-      "source": "staticice",
+      "name": "Corsair Vengeance 96 GB DDR5-6000 CL36 (CMK96GX5M2E6000Z36)",
+      "spec": "2 x 48 GB \u2014 DDR5-6000 CL36 \u2014 CMK96GX5M2E6000Z36",
+      "currentPrice": 1099.0,
+      "retailer": "MSY",
+      "source": "msy",
       "in_stock": true,
+      "stock_status": "in_stock",
       "history": [
         {
-          "date": "2026-03-09",
-          "price": 999.0
+          "date": "2026-03-13",
+          "price": 1099.0
         },
         {
-          "date": "2026-03-10",
-          "price": 999.0
-        },
-        {
-          "date": "2026-03-11",
-          "price": 999.0
+          "date": "2026-03-14",
+          "price": 1099.0
         }
       ],
-      "alertTarget": 828
+      "alertTarget": 1011
     },
     "ssd1": {
       "id": "ssd1",
       "type": "Storage (OS)",
       "name": "Samsung 990 Pro 2 TB NVMe",
       "spec": "M.2-2280 PCIe 4.0 \u2014 7,450 MB/s read",
-      "currentPrice": 329.0,
-      "retailer": "Austin Computers",
-      "source": "austin_computers",
+      "currentPrice": 489.0,
+      "retailer": "PC Case Gear",
+      "source": "pc_case_gear",
       "in_stock": true,
+      "stock_status": "in_stock",
       "history": [
         {
-          "date": "2026-03-09",
-          "price": 329.0
+          "date": "2026-03-13",
+          "price": 489.0
         },
         {
-          "date": "2026-03-10",
-          "price": 329.0
-        },
-        {
-          "date": "2026-03-11",
-          "price": 329.0
+          "date": "2026-03-14",
+          "price": 489.0
         }
       ],
-      "alertTarget": 258
+      "alertTarget": 450
     },
     "gpu": {
       "id": "gpu",
       "type": "GPU",
-      "name": "ASUS ProArt RTX 4060 OC 8 GB",
-      "spec": "GeForce RTX 4060 \u2014 workstation-quiet design",
-      "currentPrice": 499.0,
-      "retailer": "PC Case Gear",
-      "source": "pc_case_gear",
+      "name": "PNY GeForce RTX 5060 ARGB OC Triple Fan 8 GB (VCG50608TFXXPB1-O)",
+      "spec": "GeForce RTX 5060 \u2014 8 GB GDDR7, ARGB triple-fan OC",
+      "currentPrice": 489.0,
+      "retailer": "PLE Computers",
+      "source": "ple_computers",
       "in_stock": true,
+      "stock_status": "unknown",
       "history": [
         {
-          "date": "2026-03-09",
-          "price": 499.0
+          "date": "2026-03-13",
+          "price": 489.0
         },
         {
-          "date": "2026-03-10",
-          "price": 499.0
-        },
-        {
-          "date": "2026-03-11",
-          "price": 499.0
+          "date": "2026-03-14",
+          "price": 489.0
         }
       ],
-      "alertTarget": 459
+      "alertTarget": 450
     },
     "case": {
       "id": "case",
       "type": "Case",
       "name": "Lian Li DAN A3 Wood mATX",
       "spec": "Micro-ATX \u2014 wood front panel, 360mm rad support",
-      "currentPrice": 129.0,
-      "retailer": "Scorptec",
-      "source": "staticice",
-      "in_stock": true,
+      "currentPrice": 145,
+      "retailer": "Unknown",
+      "source": "fallback",
+      "in_stock": false,
+      "stock_status": "out_of_stock",
       "history": [
         {
-          "date": "2026-03-09",
-          "price": 129.0
+          "date": "2026-03-13",
+          "price": 145
         },
         {
-          "date": "2026-03-10",
-          "price": 129.0
-        },
-        {
-          "date": "2026-03-11",
-          "price": 129.0
+          "date": "2026-03-14",
+          "price": 145
         }
       ],
       "alertTarget": 133
@@ -181,20 +160,17 @@
       "name": "MSI MAG A850GL PCIE5 850W",
       "spec": "80+ Gold \u2014 Fully Modular, ATX 3.0",
       "currentPrice": 139.0,
-      "retailer": "Computer & Parts Land",
-      "source": "computer_&_parts_land",
+      "retailer": "MSY",
+      "source": "msy",
       "in_stock": true,
+      "stock_status": "in_stock",
       "history": [
         {
-          "date": "2026-03-09",
+          "date": "2026-03-13",
           "price": 139.0
         },
         {
-          "date": "2026-03-10",
-          "price": 139.0
-        },
-        {
-          "date": "2026-03-11",
+          "date": "2026-03-14",
           "price": 139.0
         }
       ],
@@ -203,195 +179,75 @@
   },
   "scrapes": [
     {
-      "timestamp": "2026-03-09T10:08:06.884766+00:00",
-      "status": "ok",
-      "updated": 8,
-      "total": 8
-    },
-    {
-      "timestamp": "2026-03-09T10:21:23.845351+00:00",
-      "status": "ok",
-      "updated": 8,
-      "total": 8
-    },
-    {
-      "timestamp": "2026-03-09T10:37:50.506716+00:00",
-      "status": "ok",
-      "updated": 8,
-      "total": 8
-    },
-    {
-      "timestamp": "2026-03-09T11:14:30.549837+00:00",
-      "status": "ok",
-      "updated": 8,
-      "total": 8
-    },
-    {
-      "timestamp": "2026-03-09T11:15:03.356610+00:00",
-      "status": "ok",
-      "updated": 8,
-      "total": 8
-    },
-    {
-      "timestamp": "2026-03-09T11:15:36.877828+00:00",
-      "status": "ok",
-      "updated": 8,
-      "total": 8
-    },
-    {
-      "timestamp": "2026-03-09T11:16:09.297106+00:00",
-      "status": "ok",
-      "updated": 8,
-      "total": 8
-    },
-    {
-      "timestamp": "2026-03-09T11:16:42.666134+00:00",
-      "status": "ok",
-      "updated": 8,
-      "total": 8
-    },
-    {
-      "timestamp": "2026-03-09T11:17:14.944276+00:00",
-      "status": "ok",
-      "updated": 8,
-      "total": 8
-    },
-    {
-      "timestamp": "2026-03-09T11:17:51.540009+00:00",
-      "status": "ok",
-      "updated": 8,
-      "total": 8
-    },
-    {
-      "timestamp": "2026-03-09T11:18:24.109500+00:00",
-      "status": "ok",
-      "updated": 8,
-      "total": 8
-    },
-    {
-      "timestamp": "2026-03-09T11:18:56.473937+00:00",
-      "status": "ok",
-      "updated": 8,
-      "total": 8
-    },
-    {
-      "timestamp": "2026-03-09T11:19:29.168617+00:00",
-      "status": "ok",
-      "updated": 8,
-      "total": 8
-    },
-    {
-      "timestamp": "2026-03-09T11:20:01.511263+00:00",
-      "status": "ok",
-      "updated": 8,
-      "total": 8
-    },
-    {
-      "timestamp": "2026-03-09T11:20:34.136391+00:00",
-      "status": "ok",
-      "updated": 8,
-      "total": 8
-    },
-    {
-      "timestamp": "2026-03-09T11:21:08.678487+00:00",
-      "status": "ok",
-      "updated": 8,
-      "total": 8
-    },
-    {
-      "timestamp": "2026-03-09T11:21:43.497381+00:00",
-      "status": "ok",
-      "updated": 8,
-      "total": 8
-    },
-    {
-      "timestamp": "2026-03-10T05:22:05.657466+00:00",
-      "status": "ok",
-      "updated": 8,
-      "total": 8
-    },
-    {
-      "timestamp": "2026-03-11T05:22:08.161014+00:00",
-      "status": "ok",
-      "updated": 8,
-      "total": 8
-    },
-    {
-      "timestamp": "2026-03-11T09:44:00.591586+00:00",
+      "timestamp": "2026-03-13T06:34:18.639352+00:00",
       "status": "ok",
       "updated": 6,
       "total": 8
     },
     {
-      "timestamp": "2026-03-11T09:45:10.580240+00:00",
+      "timestamp": "2026-03-13T06:40:05.095014+00:00",
       "status": "ok",
-      "updated": 6,
+      "updated": 7,
       "total": 8
     },
     {
-      "timestamp": "2026-03-11T09:45:49.609083+00:00",
+      "timestamp": "2026-03-13T06:41:07.347707+00:00",
       "status": "ok",
-      "updated": 6,
+      "updated": 7,
       "total": 8
     },
     {
-      "timestamp": "2026-03-11T09:46:23.169479+00:00",
+      "timestamp": "2026-03-13T06:45:02.626608+00:00",
       "status": "ok",
-      "updated": 6,
+      "updated": 7,
       "total": 8
     },
     {
-      "timestamp": "2026-03-11T09:46:56.844957+00:00",
+      "timestamp": "2026-03-13T06:45:39.667109+00:00",
       "status": "ok",
-      "updated": 6,
+      "updated": 7,
       "total": 8
     },
     {
-      "timestamp": "2026-03-11T09:47:30.307542+00:00",
+      "timestamp": "2026-03-13T06:46:29.477413+00:00",
       "status": "ok",
-      "updated": 6,
+      "updated": 7,
       "total": 8
     },
     {
-      "timestamp": "2026-03-11T09:48:04.509383+00:00",
+      "timestamp": "2026-03-13T06:48:25.432494+00:00",
       "status": "ok",
-      "updated": 6,
+      "updated": 7,
       "total": 8
     },
     {
-      "timestamp": "2026-03-11T09:48:38.659855+00:00",
+      "timestamp": "2026-03-13T07:08:05.454777+00:00",
       "status": "ok",
-      "updated": 6,
+      "updated": 7,
       "total": 8
     },
     {
-      "timestamp": "2026-03-11T09:49:12.876969+00:00",
+      "timestamp": "2026-03-13T07:12:39.068335+00:00",
       "status": "ok",
-      "updated": 6,
+      "updated": 7,
       "total": 8
     },
     {
-      "timestamp": "2026-03-11T09:49:46.372669+00:00",
+      "timestamp": "2026-03-13T07:17:01.309188+00:00",
       "status": "ok",
-      "updated": 6,
+      "updated": 7,
       "total": 8
     },
     {
-      "timestamp": "2026-03-11T09:50:26.771394+00:00",
+      "timestamp": "2026-03-13T07:19:47.265929+00:00",
       "status": "ok",
-      "updated": 6,
+      "updated": 7,
       "total": 8
     },
     {
-      "timestamp": "2026-03-11T09:52:16.764667+00:00",
+      "timestamp": "2026-03-14T07:20:21.959703+00:00",
       "status": "ok",
-      "updated": 6,
-      "total": 8
-    },
-    {
-      "timestamp": "2026-03-11T11:49:53.522563+00:00",
-      "status": "ok",
-      "updated": 6,
+      "updated": 7,
       "total": 8
     }
   ]

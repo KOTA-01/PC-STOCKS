@@ -12,6 +12,27 @@ import requests.utils
 from scrapers.base import BaseScraper, ProductListing
 
 
+def _parse_stock_status(*chunks: str) -> tuple[bool, str]:
+    """Classify stock from StaticICE text fragments."""
+    text = " ".join(chunk for chunk in chunks if chunk).lower()
+
+    out_markers = (
+        "out of stock", "sold out", "unavailable", "backorder",
+        "back order", "pre-order", "preorder", "available soon",
+        "eta", "notify me",
+    )
+    in_markers = (
+        "in stock", "instock", "available now", "pick up today",
+        "pickup today", "ships today",
+    )
+
+    if any(marker in text for marker in out_markers):
+        return False, "out_of_stock"
+    if any(marker in text for marker in in_markers):
+        return True, "in_stock"
+    return True, "unknown"
+
+
 class StaticICEScraper(BaseScraper):
     STORE_NAME = "StaticICE"
     BASE_URL = "https://www.staticice.com.au"
@@ -59,8 +80,15 @@ class StaticICEScraper(BaseScraper):
                 product_url = self.BASE_URL + "/" + product_url.lstrip("/")
 
             # Stock status
-            alt_text = price_link.get("alt", "") + price_link.get("title", "")
-            in_stock = "out of stock" not in alt_text.lower()
+            alt_text = price_link.get("alt", "")
+            title_text = price_link.get("title", "")
+            row_text = row.get_text(" ", strip=True)
+            in_stock, stock_status = _parse_stock_status(
+                alt_text,
+                title_text,
+                desc,
+                row_text,
+            )
 
             # Shipping (StaticICE sometimes shows delivery info)
             shipping = None
@@ -74,6 +102,7 @@ class StaticICEScraper(BaseScraper):
                 url=product_url,
                 store=store,
                 in_stock=in_stock,
+                stock_status=stock_status,
                 shipping=shipping,
             ))
 

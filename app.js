@@ -18,6 +18,30 @@ let currentView = "dashboard";
 let sparkCharts = {};
 let totalChartInst = null;
 let lastScrapeInfo = null;
+let buildSelections = {};
+
+const BUILD_SELECTIONS_KEY = "pc-stocks-build-selections";
+
+const BUILD_OPTIONS = {
+  cpu: [
+    { name: "AMD Ryzen 9 9950X", spec: "16-Core / 32-Thread", price: 897 },
+    { name: "AMD Ryzen 9 9900X", spec: "12-Core / 24-Thread", price: 639 },
+    { name: "AMD Ryzen 7 9700X", spec: "8-Core / 16-Thread", price: 469 },
+  ],
+  ram: [
+    { name: "Corsair Vengeance 96 GB DDR5-6000 CL36 (CMK96GX5M2E6000Z36)", spec: "2 x 48 GB", price: 1099 },
+    { name: "Team T-Force Delta RGB 64 GB DDR5-6000 CL38 (FF3D564G6000HC38JDC01)", spec: "2 x 32 GB", price: 889 },
+  ],
+  ssd1: [
+    { name: "Samsung 990 Pro 2 TB NVMe", spec: "PCIe 4.0", price: 489 },
+    { name: "Samsung 990 Pro 4 TB NVMe", spec: "PCIe 4.0", price: 779 },
+  ],
+  gpu: [
+    { name: "PNY GeForce RTX 5060 ARGB OC Triple Fan 8 GB (VCG50608TFXXPB1-O)", spec: "Triple-fan OC", price: 489 },
+    { name: "ASUS GeForce RTX 5060 TUF Gaming OC 8 GB", spec: "Triple-fan OC", price: 599 },
+    { name: "PNY GeForce RTX 5070 OC 12 GB", spec: "12 GB GDDR7", price: 899 },
+  ],
+};
 
 // ────────────────────────────────────────────────────
 // API CALLS
@@ -198,6 +222,35 @@ function formatSource(source) {
   return labels[source] || source.replace(/_/g, " ").replace(/\b\w/g, c => c.toUpperCase());
 }
 
+function loadBuildSelections() {
+  try {
+    const raw = localStorage.getItem(BUILD_SELECTIONS_KEY);
+    buildSelections = raw ? JSON.parse(raw) : {};
+  } catch {
+    buildSelections = {};
+  }
+}
+
+function saveBuildSelections() {
+  localStorage.setItem(BUILD_SELECTIONS_KEY, JSON.stringify(buildSelections));
+}
+
+function getStockStatus(part) {
+  if (part.stock_status) return part.stock_status;
+  return part.in_stock === false ? "out_of_stock" : "unknown";
+}
+
+function stockTag(part) {
+  const status = getStockStatus(part);
+  if (status === "in_stock") {
+    return '<span class="tag" style="background:var(--green-bg);color:var(--green)">IN STOCK</span>';
+  }
+  if (status === "out_of_stock") {
+    return '<span class="tag" style="background:var(--red-bg);color:var(--red)">OUT OF STOCK</span>';
+  }
+  return '<span class="tag" style="background:var(--yellow-bg);color:var(--yellow)">STOCK UNCONFIRMED</span>';
+}
+
 // ────────────────────────────────────────────────────
 // RENDERING — DASHBOARD
 // ────────────────────────────────────────────────────
@@ -270,6 +323,7 @@ function renderDashboard() {
       tags += '<span class="tag tag--sale">ON SALE</span>';
     if (delta > 5) tags += '<span class="tag tag--rising">RISING</span>';
     if (isAtBest) tags += '<span class="tag tag--best">BEST PRICE</span>';
+    tags += stockTag(part);
     if (part.source === "fallback" || part.source === "seed")
       tags +=
         '<span class="tag" style="background:var(--yellow-bg);color:var(--yellow)">ESTIMATED</span>';
@@ -470,10 +524,13 @@ function renderPartsList() {
     const deltaClass = delta < -1 ? "positive" : delta > 1 ? "negative" : "";
     const sourceLabel = formatSource(part.source);
     const onSale = isOnSale(part);
+    const stockStatus = getStockStatus(part);
     const stockBadge =
-      part.in_stock === false
+      stockStatus === "in_stock"
+        ? ' <span style="color:var(--green)">In stock</span>'
+        : stockStatus === "out_of_stock"
         ? ' <span style="color:var(--red)">Out of stock</span>'
-        : "";
+        : ' <span style="color:var(--yellow)">Stock unconfirmed</span>';
     const saleBadge = onSale
         ? ' <span class="tag tag--sale" style="font-size:.6rem;padding:1px 6px;margin-left:4px">ON SALE</span>'
         : "";
@@ -547,6 +604,96 @@ function renderAlerts() {
   list.innerHTML = alertsHTML;
 }
 
+function getOptionsForPart(part) {
+  const base = BUILD_OPTIONS[part.id] ? [...BUILD_OPTIONS[part.id]] : [];
+  if (!base.some((opt) => opt.name === part.name)) {
+    base.unshift({
+      name: part.name,
+      spec: part.spec || part.type,
+      price: part.currentPrice,
+    });
+  }
+  return base;
+}
+
+function getSelectionForPart(part) {
+  const options = getOptionsForPart(part);
+  const selectedName = buildSelections[part.id];
+  const selected = options.find((opt) => opt.name === selectedName);
+  return selected || options[0];
+}
+
+function updateBuildSelection(partId, value) {
+  buildSelections[partId] = value;
+  saveBuildSelections();
+  renderBuilder();
+}
+
+function resetBuildSelections() {
+  buildSelections = {};
+  saveBuildSelections();
+  renderBuilder();
+}
+
+function renderBuilder() {
+  const grid = document.getElementById("builderGrid");
+  const summary = document.getElementById("builderSummary");
+  if (!grid || !summary || PARTS.length === 0) return;
+
+  grid.innerHTML = PARTS.map((part) => {
+    const options = getOptionsForPart(part);
+    const selected = getSelectionForPart(part);
+
+    const optionsHTML = options.map((opt) => {
+      const selectedAttr = opt.name === selected.name ? "selected" : "";
+      return `<option value="${opt.name.replace(/"/g, "&quot;")}" ${selectedAttr}>${opt.name}</option>`;
+    }).join("");
+
+    return `
+      <article class="builder-card">
+        <div class="builder-card__type">${part.type}</div>
+        <label class="builder-card__label">Select Part</label>
+        <select class="builder-card__select" data-part-id="${part.id}">
+          ${optionsHTML}
+        </select>
+        <div class="builder-card__meta">${selected.spec || ""}</div>
+        <div class="builder-card__price">Est. ${fmt(selected.price ?? part.currentPrice)}</div>
+      </article>
+    `;
+  }).join("");
+
+  const selectedRows = PARTS.map((part) => {
+    const selected = getSelectionForPart(part);
+    return {
+      type: part.type,
+      name: selected.name,
+      price: selected.price ?? part.currentPrice,
+    };
+  });
+
+  const total = selectedRows.reduce((sum, row) => sum + row.price, 0);
+  summary.innerHTML = `
+    <h3 class="builder-summary__title">Selected Build Summary</h3>
+    ${selectedRows.map((row) => `
+      <div class="builder-summary__row">
+        <span>${row.type}</span>
+        <span>${fmt(row.price)}</span>
+      </div>
+    `).join("")}
+    <div class="builder-summary__total">
+      <span>Total</span>
+      <span>${fmt(total)}</span>
+    </div>
+  `;
+
+  grid.querySelectorAll(".builder-card__select").forEach((select) => {
+    select.addEventListener("change", (e) => {
+      const partId = e.target.dataset.partId;
+      updateBuildSelection(partId, e.target.value);
+    });
+  });
+}
+
 // ────────────────────────────────────────────────────
 // ALERT EDITING
 // ────────────────────────────────────────────────────
@@ -616,6 +763,7 @@ function showToast(title, body, type = "") {
 function renderCurrentView() {
   if (currentView === "dashboard") renderDashboard();
   else if (currentView === "parts") renderPartsList();
+  else if (currentView === "builder") renderBuilder();
   else if (currentView === "alerts") renderAlerts();
 }
 
@@ -628,6 +776,7 @@ function switchView(view) {
 
   document.getElementById("viewDashboard").classList.toggle("hidden", view !== "dashboard");
   document.getElementById("viewParts").classList.toggle("hidden", view !== "parts");
+  document.getElementById("viewBuilder").classList.toggle("hidden", view !== "builder");
   document.getElementById("viewAlerts").classList.toggle("hidden", view !== "alerts");
 
   renderCurrentView();
@@ -673,6 +822,7 @@ async function pollPrices() {
 // ────────────────────────────────────────────────────
 document.addEventListener("DOMContentLoaded", async () => {
   initTheme();
+  loadBuildSelections();
 
   // Nav buttons
   document.querySelectorAll(".nav__btn").forEach((btn) => {
@@ -690,6 +840,9 @@ document.addEventListener("DOMContentLoaded", async () => {
   // Scrape button
   const scrapeBtn = document.getElementById("scrapeBtn");
   if (scrapeBtn) scrapeBtn.addEventListener("click", triggerScrape);
+
+  const resetBuildBtn = document.getElementById("resetBuildBtn");
+  if (resetBuildBtn) resetBuildBtn.addEventListener("click", resetBuildSelections);
 
   // Initial data load
   const ok = await fetchPrices();

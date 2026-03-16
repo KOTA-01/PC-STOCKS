@@ -92,6 +92,7 @@ class MSYScraper(BaseScraper):
                     url=href,
                     store=self.STORE_NAME,
                     in_stock=in_stock,
+                    stock_status="in_stock" if in_stock else "out_of_stock",
                     shipping=shipping,
                 ))
             except Exception as e:
@@ -128,6 +129,10 @@ class MSYScraper(BaseScraper):
                         url=url,
                         store=self.STORE_NAME,
                         in_stock="InStock" in offers.get("availability", ""),
+                        stock_status=(
+                            "in_stock" if "InStock" in offers.get("availability", "")
+                            else "out_of_stock"
+                        ),
                     ))
             except Exception:
                 continue

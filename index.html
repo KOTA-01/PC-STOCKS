@@ -26,6 +26,7 @@
       <nav class="nav">
         <button class="nav__btn active" data-view="dashboard">Dashboard</button>
         <button class="nav__btn" data-view="parts">Parts</button>
+        <button class="nav__btn" data-view="builder">Build</button>
         <button class="nav__btn" data-view="alerts">Alerts</button>
       </nav>
       <div class="top-bar__right">
@@ -84,6 +85,17 @@
     <section class="view view--parts hidden" id="viewParts">
       <h2 class="section-title">All Components</h2>
       <div class="parts-list" id="partsList"></div>
+    </section>
+
+    <!-- ── BUILD SELECTOR VIEW ── -->
+    <section class="view view--builder hidden" id="viewBuilder">
+      <h2 class="section-title">Build Selector</h2>
+      <p class="subtitle">Choose your preferred parts mix. This planner is local to your browser and does not overwrite live tracker data.</p>
+      <div class="builder-controls">
+        <button class="btn btn--ghost" id="resetBuildBtn">Reset to Live Build</button>
+      </div>
+      <div class="builder-grid" id="builderGrid"></div>
+      <div class="builder-summary" id="builderSummary"></div>
     </section>
 
     <!-- ── ALERTS VIEW ── -->

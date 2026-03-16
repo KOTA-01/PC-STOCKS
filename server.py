@@ -77,6 +77,7 @@ def seed_history():
             "retailer": "Estimated",
             "source": "seed",
             "in_stock": True,
+            "stock_status": "unknown",
             "history": [
                 {"date": today, "price": part["fallback_price"]}
             ],
@@ -126,11 +127,18 @@ def run_scrape():
                 "retailer": result["retailer"],
                 "source": result["source"],
                 "in_stock": result["in_stock"],
+                "stock_status": result.get("stock_status", "unknown"),
                 "history": [],
                 "alertTarget": round(result["price"] * 0.92),
             }
 
         part_data = history["parts"][pid]
+
+        # Always sync part metadata so config swaps (e.g. different model)
+        # propagate without requiring a manual history reset.
+        part_data["type"] = result["type"]
+        part_data["name"] = result["name"]
+        part_data["spec"] = result["spec"]
 
         # Only record real scraped prices (not fallback)
         if result["source"] != "fallback":
@@ -138,6 +146,7 @@ def run_scrape():
             part_data["retailer"] = result["retailer"]
             part_data["source"] = result["source"]
             part_data["in_stock"] = result["in_stock"]
+            part_data["stock_status"] = result.get("stock_status", "unknown")
             updated += 1
 
         # Append to history (one entry per day)
@@ -179,6 +188,11 @@ def api_prices():
     """Return all parts with current prices and history."""
     history = load_history()
     parts = list(history.get("parts", {}).values())
+    for part in parts:
+        part.setdefault(
+            "stock_status",
+            "in_stock" if part.get("in_stock", True) else "out_of_stock",
+        )
     total = sum(p.get("currentPrice", 0) for p in parts)
     return jsonify({
         "parts": parts,

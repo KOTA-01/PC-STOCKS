@@ -50,8 +50,17 @@ class ProductListing:
     url: str
     store: str
     in_stock: bool = True
+    stock_status: str = "unknown"
     shipping: float | None = None
     timestamp: str = field(default_factory=lambda: datetime.now(timezone.utc).isoformat())
+
+    def __post_init__(self):
+        if self.stock_status == "in_stock":
+            self.in_stock = True
+        elif self.stock_status == "out_of_stock":
+            self.in_stock = False
+        elif not self.in_stock:
+            self.stock_status = "out_of_stock"
 
     def to_dict(self) -> dict:
         return asdict(self)
