@@ -18,6 +18,30 @@
         {
           "date": "2026-03-14",
           "price": 897.0
+        },
+        {
+          "date": "2026-03-19",
+          "price": 897.0
+        },
+        {
+          "date": "2026-03-25",
+          "price": 897.0
+        },
+        {
+          "date": "2026-03-26",
+          "price": 897.0
+        },
+        {
+          "date": "2026-04-02",
+          "price": 897.0
+        },
+        {
+          "date": "2026-04-07",
+          "price": 897.0
+        },
+        {
+          "date": "2026-04-15",
+          "price": 897.0
         }
       ],
       "alertTarget": 823
@@ -27,7 +51,7 @@
       "type": "CPU Cooler",
       "name": "ARCTIC Liquid Freezer III Pro 360",
       "spec": "360mm AIO \u2014 77 CFM",
-      "currentPrice": 169.0,
+      "currentPrice": 123.2,
       "retailer": "PLE Computers",
       "source": "ple_computers",
       "in_stock": true,
@@ -40,6 +64,30 @@
         {
           "date": "2026-03-14",
           "price": 169.0
+        },
+        {
+          "date": "2026-03-19",
+          "price": 169.0
+        },
+        {
+          "date": "2026-03-25",
+          "price": 169.0
+        },
+        {
+          "date": "2026-03-26",
+          "price": 169.0
+        },
+        {
+          "date": "2026-04-02",
+          "price": 152.1
+        },
+        {
+          "date": "2026-04-07",
+          "price": 136.89
+        },
+        {
+          "date": "2026-04-15",
+          "price": 123.2
         }
       ],
       "alertTarget": 155
@@ -53,7 +101,7 @@
       "retailer": "MSY",
       "source": "msy",
       "in_stock": true,
-      "stock_status": "in_stock",
+      "stock_status": "unknown",
       "history": [
         {
           "date": "2026-03-13",
@@ -61,6 +109,30 @@
         },
         {
           "date": "2026-03-14",
+          "price": 369.0
+        },
+        {
+          "date": "2026-03-19",
+          "price": 369.0
+        },
+        {
+          "date": "2026-03-25",
+          "price": 369.0
+        },
+        {
+          "date": "2026-03-26",
+          "price": 369.0
+        },
+        {
+          "date": "2026-04-02",
+          "price": 369.0
+        },
+        {
+          "date": "2026-04-07",
+          "price": 369.0
+        },
+        {
+          "date": "2026-04-15",
           "price": 369.0
         }
       ],
@@ -71,7 +143,7 @@
       "type": "Memory",
       "name": "Corsair Vengeance 96 GB DDR5-6000 CL36 (CMK96GX5M2E6000Z36)",
       "spec": "2 x 48 GB \u2014 DDR5-6000 CL36 \u2014 CMK96GX5M2E6000Z36",
-      "currentPrice": 1099.0,
+      "currentPrice": 1399.0,
       "retailer": "MSY",
       "source": "msy",
       "in_stock": true,
@@ -84,6 +156,30 @@
         {
           "date": "2026-03-14",
           "price": 1099.0
+        },
+        {
+          "date": "2026-03-19",
+          "price": 1169.0
+        },
+        {
+          "date": "2026-03-25",
+          "price": 1169.0
+        },
+        {
+          "date": "2026-03-26",
+          "price": 1169.0
+        },
+        {
+          "date": "2026-04-02",
+          "price": 1169.0
+        },
+        {
+          "date": "2026-04-07",
+          "price": 1169.0
+        },
+        {
+          "date": "2026-04-15",
+          "price": 1399.0
         }
       ],
       "alertTarget": 1011
@@ -93,7 +189,7 @@
       "type": "Storage (OS)",
       "name": "Samsung 990 Pro 2 TB NVMe",
       "spec": "M.2-2280 PCIe 4.0 \u2014 7,450 MB/s read",
-      "currentPrice": 489.0,
+      "currentPrice": 599.0,
       "retailer": "PC Case Gear",
       "source": "pc_case_gear",
       "in_stock": true,
@@ -106,6 +202,30 @@
         {
           "date": "2026-03-14",
           "price": 489.0
+        },
+        {
+          "date": "2026-03-19",
+          "price": 488.0
+        },
+        {
+          "date": "2026-03-25",
+          "price": 488.0
+        },
+        {
+          "date": "2026-03-26",
+          "price": 488.0
+        },
+        {
+          "date": "2026-04-02",
+          "price": 488.0
+        },
+        {
+          "date": "2026-04-07",
+          "price": 549.0
+        },
+        {
+          "date": "2026-04-15",
+          "price": 599.0
         }
       ],
       "alertTarget": 450
@@ -115,11 +235,11 @@
       "type": "GPU",
       "name": "PNY GeForce RTX 5060 ARGB OC Triple Fan 8 GB (VCG50608TFXXPB1-O)",
       "spec": "GeForce RTX 5060 \u2014 8 GB GDDR7, ARGB triple-fan OC",
-      "currentPrice": 489.0,
-      "retailer": "PLE Computers",
-      "source": "ple_computers",
+      "currentPrice": 599.0,
+      "retailer": "PC Case Gear",
+      "source": "pc_case_gear",
       "in_stock": true,
-      "stock_status": "unknown",
+      "stock_status": "in_stock",
       "history": [
         {
           "date": "2026-03-13",
@@ -128,6 +248,30 @@
         {
           "date": "2026-03-14",
           "price": 489.0
+        },
+        {
+          "date": "2026-03-19",
+          "price": 489.0
+        },
+        {
+          "date": "2026-03-25",
+          "price": 489.0
+        },
+        {
+          "date": "2026-03-26",
+          "price": 489.0
+        },
+        {
+          "date": "2026-04-02",
+          "price": 489.0
+        },
+        {
+          "date": "2026-04-07",
+          "price": 489.0
+        },
+        {
+          "date": "2026-04-15",
+          "price": 599.0
         }
       ],
       "alertTarget": 450
@@ -150,6 +294,30 @@
         {
           "date": "2026-03-14",
           "price": 145
+        },
+        {
+          "date": "2026-03-19",
+          "price": 145
+        },
+        {
+          "date": "2026-03-25",
+          "price": 145
+        },
+        {
+          "date": "2026-03-26",
+          "price": 145
+        },
+        {
+          "date": "2026-04-02",
+          "price": 145
+        },
+        {
+          "date": "2026-04-07",
+          "price": 145
+        },
+        {
+          "date": "2026-04-15",
+          "price": 145
         }
       ],
       "alertTarget": 133
@@ -159,9 +327,9 @@
       "type": "Power Supply",
       "name": "MSI MAG A850GL PCIE5 850W",
       "spec": "80+ Gold \u2014 Fully Modular, ATX 3.0",
-      "currentPrice": 139.0,
-      "retailer": "MSY",
-      "source": "msy",
+      "currentPrice": 148.0,
+      "retailer": "UMart",
+      "source": "umart",
       "in_stock": true,
       "stock_status": "in_stock",
       "history": [
@@ -172,6 +340,30 @@
         {
           "date": "2026-03-14",
           "price": 139.0
+        },
+        {
+          "date": "2026-03-19",
+          "price": 139.0
+        },
+        {
+          "date": "2026-03-25",
+          "price": 147.0
+        },
+        {
+          "date": "2026-03-26",
+          "price": 147.0
+        },
+        {
+          "date": "2026-04-02",
+          "price": 148.0
+        },
+        {
+          "date": "2026-04-07",
+          "price": 148.0
+        },
+        {
+          "date": "2026-04-15",
+          "price": 148.0
         }
       ],
       "alertTarget": 128
@@ -248,6 +440,54 @@
       "timestamp": "2026-03-14T07:20:21.959703+00:00",
       "status": "ok",
       "updated": 7,
+      "total": 8
+    },
+    {
+      "timestamp": "2026-03-19T01:01:19.636469+00:00",
+      "status": "ok",
+      "updated": 6,
+      "total": 8
+    },
+    {
+      "timestamp": "2026-03-19T01:21:04.353002+00:00",
+      "status": "ok",
+      "updated": 6,
+      "total": 8
+    },
+    {
+      "timestamp": "2026-03-19T06:43:04.195477+00:00",
+      "status": "ok",
+      "updated": 6,
+      "total": 8
+    },
+    {
+      "timestamp": "2026-03-25T23:49:16.101397+00:00",
+      "status": "ok",
+      "updated": 6,
+      "total": 8
+    },
+    {
+      "timestamp": "2026-03-26T06:39:23.336913+00:00",
+      "status": "ok",
+      "updated": 6,
+      "total": 8
+    },
+    {
+      "timestamp": "2026-04-02T03:16:31.642862+00:00",
+      "status": "ok",
+      "updated": 6,
+      "total": 8
+    },
+    {
+      "timestamp": "2026-04-07T07:14:17.242543+00:00",
+      "status": "ok",
+      "updated": 6,
+      "total": 8
+    },
+    {
+      "timestamp": "2026-04-15T23:45:34.854998+00:00",
+      "status": "ok",
+      "updated": 6,
       "total": 8
     }
   ]
